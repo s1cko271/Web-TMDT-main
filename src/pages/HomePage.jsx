@@ -103,7 +103,7 @@ const HomePage = () => {
           <PromotionBanner />
         </div>
       </section>
-      
+
       {/* Featured Categories */}
       <section className="featured-categories">
         <div className="container">

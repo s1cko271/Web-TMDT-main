@@ -219,4 +219,31 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// GET lấy đánh giá của sản phẩm
+router.get('/:id/reviews', async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // Kiểm tra sản phẩm tồn tại
+    const [product] = await pool.query('SELECT * FROM school_supplies WHERE id = ?', [id]);
+    if (product.length === 0) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    
+    // Lấy tất cả đánh giá của sản phẩm kèm theo thông tin người dùng
+    const [reviews] = await pool.query(`
+      SELECT r.*, u.name as user_name
+      FROM product_reviews r
+      JOIN users u ON r.user_id = u.id
+      WHERE r.product_id = ?
+      ORDER BY r.created_at DESC
+    `, [id]);
+    
+    res.json(reviews);
+  } catch (error) {
+    console.error('Error fetching product reviews:', error.message);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router;

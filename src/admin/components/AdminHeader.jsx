@@ -43,18 +43,22 @@ const AdminHeader = () => {
           <i className="fas fa-bell"></i>
           <span className="notification-badge">3</span>
         </div>
-        <div className="header-user">
+        <div className="header-user" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           {adminInfo && (
             <>
-              <div className="user-info" onClick={toggleDropdown}>
+              <div className="user-info" onClick={toggleDropdown} style={{ cursor: 'pointer' }}>
               <span className="user-name">{adminInfo.name}</span>
               <div className="user-avatar">
                   <span>{adminInfo.name.charAt(0).toUpperCase()}</span>
                 </div>
                 <i className="fas fa-chevron-down"></i>
               </div>
+              <button onClick={handleLogout} className="logout-button" style={{marginLeft: 8, background: '#fff', border: '1px solid #e74c3c', color: '#e74c3c', borderRadius: 4, padding: '7px 16px', fontWeight: 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6}}>
+                <i className="fas fa-sign-out-alt"></i>
+                Đăng xuất
+              </button>
               {showDropdown && (
-          <div className="user-dropdown">
+                <div className="user-dropdown">
                   <div className="dropdown-header">
                     <strong>{adminInfo.name}</strong>
                     <p>{adminInfo.email}</p>
@@ -73,14 +77,8 @@ const AdminHeader = () => {
                       </a>
                     </li>
                     <li className="divider"></li>
-                    <li>
-            <button onClick={handleLogout} className="logout-button">
-              <i className="fas fa-sign-out-alt"></i>
-              Đăng xuất
-            </button>
-                    </li>
                   </ul>
-          </div>
+                </div>
               )}
             </>
           )}

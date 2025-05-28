@@ -66,11 +66,6 @@ const LoginPage = () => {
           {t('loginPage.noAccount', 'Don\'t have an account?')} <Link to="/signup">{t('navbar.signup', 'Sign up')}</Link>
         </p>
         
-        <div className="auth-demo-info">
-          <p><strong>{t('loginPage.demoAccount', 'Demo Account:')}</strong></p>
-          <p>{t('profilePage.email', 'Email')}: user@example.com</p>
-          <p>{t('loginPage.password', 'Password')}: password123</p>
-        </div>
       </div>
     </div>
   );

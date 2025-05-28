@@ -5,30 +5,27 @@ import { useShopContext } from '../context/ShopContext';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 import { formatCurrency } from '../utils/currencyUtils';
+import { useAuthContext } from '../context/AuthContext';
 import './ProductDetailPage.css';
 
 const ProductDetailPage = () => {
   const { t } = useTranslation();
   const { id } = useParams();
+  const { user, isAuthenticated } = useAuthContext();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('description');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [userRating, setUserRating] = useState(() => {
-    const saved = localStorage.getItem(`rating_${id}`);
-    return saved ? Number(saved) : 0;
-  });
+  const [userRating, setUserRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [showReviewForm, setShowReviewForm] = useState(false);
-  const [reviewText, setReviewText] = useState(() => {
-    return localStorage.getItem(`reviewText_${id}`) || '';
-  });
-  const [submittedReview, setSubmittedReview] = useState(() => {
-    const saved = localStorage.getItem(`review_${id}`);
-    return saved ? JSON.parse(saved) : null;
-  });
+  const [reviewText, setReviewText] = useState('');
+  const [submittedReview, setSubmittedReview] = useState(null);
+  const [productReviews, setProductReviews] = useState([]);
+  const [reviewSubmitting, setReviewSubmitting] = useState(false);
   const ratingRef = useRef();
+  const [relatedProducts, setRelatedProducts] = useState([]);
   
   useEffect(() => {
     const fetchProductDetail = async () => {
@@ -58,9 +55,34 @@ const ProductDetailPage = () => {
     };
     
     fetchProductDetail();
+    fetchProductReviews();
+    fetchRelatedProducts();
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
   }, [id]);
+
+  // Fetch product reviews
+  const fetchProductReviews = async () => {
+    try {
+      const response = await fetch(`/api/products/${id}/reviews`);
+      if (response.ok) {
+        const reviews = await response.json();
+        setProductReviews(reviews);
+        
+        // Check if current user has already submitted a review
+        if (isAuthenticated && user) {
+          const userReview = reviews.find(review => review.user_id === user.id);
+          if (userReview) {
+            setSubmittedReview(userReview);
+            setUserRating(userReview.rating);
+            setReviewText(userReview.comment || '');
+          }
+        }
+      }
+    } catch (err) {
+      console.error('Error fetching product reviews:', err);
+    }
+  };
   
   const handleQuantityChange = (e) => {
     const value = parseInt(e.target.value);
@@ -90,16 +112,78 @@ const ProductDetailPage = () => {
   
   const handleRate = (rate) => {
     setUserRating(rate);
-    localStorage.setItem(`rating_${id}`, rate);
   };
   
-  const handleSubmitReview = (e) => {
+  const handleSubmitReview = async (e) => {
     e.preventDefault();
-    if (userRating === 0 || reviewText.trim() === '') return;
-    const review = { rating: userRating, text: reviewText };
-    localStorage.setItem(`review_${id}`, JSON.stringify(review));
-    setSubmittedReview(review);
-    setShowReviewForm(false);
+    
+    if (!isAuthenticated) {
+      alert('Vui lòng đăng nhập để đánh giá sản phẩm');
+      return;
+    }
+    
+    if (userRating === 0 || reviewText.trim() === '') {
+      alert('Vui lòng chọn số sao và nhập nội dung đánh giá');
+      return;
+    }
+    
+    try {
+      setReviewSubmitting(true);
+      
+      const token = localStorage.getItem('token');
+      const reviewData = {
+        product_id: parseInt(id, 10),
+        rating: userRating,
+        comment: reviewText
+      };
+      
+      const response = await fetch('/api/reviews', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-auth-token': token
+        },
+        body: JSON.stringify(reviewData)
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Không thể gửi đánh giá');
+      }
+      
+      const savedReview = await response.json();
+      setSubmittedReview(savedReview);
+      setShowReviewForm(false);
+      
+      // Refresh product reviews
+      fetchProductReviews();
+      
+    } catch (err) {
+      console.error('Error submitting review:', err);
+      alert(err.message || 'Có lỗi xảy ra khi gửi đánh giá');
+    } finally {
+      setReviewSubmitting(false);
+    }
+  };
+  
+  // Lấy 4 sản phẩm liên quan (cùng category, loại trừ sản phẩm hiện tại)
+  const fetchRelatedProducts = async () => {
+    try {
+      let url = '/api/products';
+      if (product && product.category) {
+        url += `?category=${encodeURIComponent(product.category)}`;
+      }
+      const response = await fetch(url);
+      if (response.ok) {
+        let products = await response.json();
+        // Loại trừ sản phẩm hiện tại
+        products = products.filter(p => p.id !== Number(id));
+        // Lấy 4 sản phẩm đầu tiên
+        setRelatedProducts(products.slice(0, 4));
+      }
+    } catch (err) {
+      setRelatedProducts([]);
+    }
   };
   
   if (!product) {
@@ -265,45 +349,107 @@ const ProductDetailPage = () => {
             
             {activeTab === 'reviews' && (
               <div className="tab-pane">
-                {submittedReview ? (
-                  <div className="user-review-display">
-                    <div className="user-review-stars">
-                      {renderInteractiveStars(submittedReview.rating, () => {})}
-                      <span style={{ marginLeft: 8, color: '#4a55a2', fontSize: '1rem' }}>({submittedReview.rating}/5)</span>
-                    </div>
-                    <div className="user-review-text">{submittedReview.text}</div>
+                {productReviews.length > 0 ? (
+                  <div className="product-reviews">
+                    <h3>Đánh giá từ khách hàng</h3>
+                    {productReviews.map((review) => (
+                      <div key={review.id} className="review-item">
+                        <div className="review-header">
+                          <div className="review-stars">
+                            {renderStars(review.rating)}
+                            <span className="rating-text">({review.rating})</span>
+                          </div>
+                          <div className="review-author">{review.user_name || 'Khách hàng'}</div>
+                          <div className="review-date">{new Date(review.created_at).toLocaleDateString()}</div>
+                        </div>
+                        <div className="review-content">{review.comment}</div>
+                      </div>
+                    ))}
                   </div>
-                ) : showReviewForm ? (
-                  <form className="review-form" onSubmit={handleSubmitReview}>
-                    <div className="review-stars">
-                      {renderInteractiveStars(userRating, setUserRating)}
-                    </div>
-                    <textarea
-                      className="review-textarea"
-                      value={reviewText}
-                      onChange={e => setReviewText(e.target.value)}
-                      placeholder="Viết nhận xét của bạn về sản phẩm này..."
-                      rows={4}
-                      required
-                    />
-                    <button type="submit" className="btn btn-primary" disabled={userRating === 0 || reviewText.trim() === ''}>
-                      Gửi đánh giá
-                    </button>
-                  </form>
                 ) : (
-                  <>
-                    <p>Chưa có đánh giá nào. Hãy là người đầu tiên đánh giá sản phẩm này!</p>
+                  <p>Chưa có đánh giá nào. Hãy là người đầu tiên đánh giá sản phẩm này!</p>
+                )}
+                
+                {isAuthenticated ? (
+                  submittedReview ? (
+                    <div className="user-review-display">
+                      <h3>Đánh giá của bạn</h3>
+                      <div className="user-review-stars">
+                        {renderInteractiveStars(submittedReview.rating, () => {})}
+                        <span style={{ marginLeft: 8, color: '#4a55a2', fontSize: '1rem' }}>({submittedReview.rating}/5)</span>
+                      </div>
+                      <div className="user-review-text">{submittedReview.comment}</div>
+                      <button 
+                        className="btn btn-secondary btn-sm" 
+                        onClick={() => {
+                          setShowReviewForm(true);
+                          setUserRating(submittedReview.rating);
+                          setReviewText(submittedReview.comment || '');
+                        }}
+                        style={{ marginTop: '10px' }}
+                      >
+                        Chỉnh sửa đánh giá
+                      </button>
+                    </div>
+                  ) : showReviewForm ? (
+                    <form className="review-form" onSubmit={handleSubmitReview}>
+                      <h3>Viết đánh giá của bạn</h3>
+                      <div className="review-stars">
+                        {renderInteractiveStars(userRating, setUserRating)}
+                      </div>
+                      <textarea
+                        className="review-textarea"
+                        value={reviewText}
+                        onChange={e => setReviewText(e.target.value)}
+                        placeholder="Viết nhận xét của bạn về sản phẩm này..."
+                        rows={4}
+                        required
+                      />
+                      <button 
+                        type="submit" 
+                        className="btn btn-primary" 
+                        disabled={reviewSubmitting || userRating === 0 || reviewText.trim() === ''}
+                      >
+                        {reviewSubmitting ? 'Đang gửi...' : 'Gửi đánh giá'}
+                      </button>
+                    </form>
+                  ) : (
                     <button className="btn btn-secondary" onClick={() => setShowReviewForm(true)}>
                       Viết đánh giá
                     </button>
-                  </>
+                  )
+                ) : (
+                  <div className="login-to-review">
+                    <p>Vui lòng <Link to="/login">đăng nhập</Link> để đánh giá sản phẩm</p>
+                  </div>
                 )}
               </div>
             )}
           </div>
         </div>
         
-        {/* Related Products section would go here */}
+        {/* Related Products section */}
+        {relatedProducts.length > 0 && (
+          <div className="related-products-section">
+            <h3>Gợi ý sản phẩm liên quan</h3>
+            <div className="related-products-list">
+              {relatedProducts.map(rp => (
+                <Link to={`/products/${rp.id}`} key={rp.id} className="related-product-item">
+                  <img 
+                    src={rp.image_url 
+                      ? (rp.image_url.startsWith('http') 
+                          ? rp.image_url 
+                          : `/images/${rp.image_url.replace(/^\//, '')}`) 
+                      : '/images/sp1.jpg'} 
+                    alt={rp.name} 
+                  />
+                  <div className="related-product-name">{rp.name}</div>
+                  <div className="related-product-price">{formatCurrency(rp.unit_price, i18n.language)}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

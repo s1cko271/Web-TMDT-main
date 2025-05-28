@@ -43,30 +43,33 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     
     try {
-      // In a real app, this would be an API call
-      // For demo purposes, we'll simulate a successful login if credentials match
-      if (email === 'user@example.com' && password === 'password123') {
-        const userData = {
-          id: '1',
-          name: 'Demo User',
-          email: email
-        };
-        setUser(userData);
-        return userData;
-      } else {
-        // Check if user exists in localStorage (from previous signups)
-        const users = JSON.parse(localStorage.getItem('users') || '[]');
-        const foundUser = users.find(u => u.email === email && u.password === password);
-        
-        if (foundUser) {
-          // Don't include password in the user state
-          const { password, ...userWithoutPassword } = foundUser;
-          setUser(userWithoutPassword);
-          return userWithoutPassword;
-        } else {
-          throw new Error('Invalid email or password');
-        }
+      // Gọi API đăng nhập từ backend
+      const response = await fetch('/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Đăng nhập không thành công');
       }
+      
+      // Lưu token nếu API trả về
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+      }
+      
+      // Lưu user vào state
+      setUser(data);
+      
+      return data;
     } catch (err) {
       setError(err.message);
       return null;
@@ -81,32 +84,29 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     
     try {
-      // In a real app, this would be an API call
-      // For demo purposes, we'll store the user in localStorage
+      // Gọi API đăng ký từ backend để lưu vào CSDL
+      const response = await fetch('/api/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password
+        }),
+      });
+
+      const data = await response.json();
       
-      // Check if user already exists
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-      if (users.some(user => user.email === email)) {
-        throw new Error('User with this email already exists');
+      if (!response.ok) {
+        throw new Error(data.message || 'Đăng ký không thành công');
       }
       
-      // Create new user
-      const newUser = {
-        id: Date.now().toString(),
-        name,
-        email,
-        password // In a real app, this would be hashed
-      };
+      // Lưu user vào state (không bao gồm password)
+      setUser(data);
       
-      // Save to "database" (localStorage)
-      users.push(newUser);
-      localStorage.setItem('users', JSON.stringify(users));
-      
-      // Don't include password in the user state
-      const { password: _, ...userWithoutPassword } = newUser;
-      setUser(userWithoutPassword);
-      
-      return userWithoutPassword;
+      return data;
     } catch (err) {
       setError(err.message);
       return null;

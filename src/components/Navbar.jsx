@@ -15,10 +15,8 @@ const Navbar = () => {
   const { cart, selectedItems } = useShopContext();
   const { user, logout, isAuthenticated } = useAuthContext();
   
-  // Calculate total items in cart (only selected items)
-  const cartCount = cart
-    .filter(item => selectedItems.includes(item.id))
-    .reduce((total, item) => total + item.quantity, 0);
+  // Đếm số loại sản phẩm (không phải tổng số lượng)
+  const cartCount = cart.filter(item => selectedItems.includes(item.id)).length;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

@@ -26,18 +26,18 @@ function App() {
   return (
     <AuthProvider>
       <div className="app">
-        <Routes>
+          <Routes>
           {/* Admin Routes - No Navbar/Footer */}
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="products" element={<Products />} />
-            <Route path="categories" element={<Categories />} />
-            <Route path="orders" element={<Orders />} />
-            <Route path="users" element={<Users />} />
-            <Route path="promotions" element={<Promotions />} />
-            <Route index element={<Dashboard />} />
-          </Route>
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="products" element={<Products />} />
+              <Route path="categories" element={<Categories />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="users" element={<Users />} />
+              <Route path="promotions" element={<Promotions />} />
+              <Route index element={<Dashboard />} />
+            </Route>
           
           {/* Main Website Routes - With Navbar/Footer */}
           <Route path="/" element={<MainLayout><HomePage /></MainLayout>} />
@@ -50,7 +50,7 @@ function App() {
           <Route path="/signup" element={<MainLayout><SignupPage /></MainLayout>} />
           <Route path="/profile" element={<MainLayout><ProfilePage /></MainLayout>} />
           <Route path="/orders" element={<MainLayout><OrderHistoryPage /></MainLayout>} />
-        </Routes>
+          </Routes>
       </div>
     </AuthProvider>
   );
