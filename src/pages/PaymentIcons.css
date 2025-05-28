@@ -1,0 +1,85 @@
+.payment-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.payment-icons i,
+.payment-icons .payment-icon {
+  font-size: 24px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  min-height: 40px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background-size: 80% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.payment-icons i:hover,
+.payment-icons .payment-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  filter: brightness(1.05);
+}
+
+/* Visa */
+.payment-icons .fa-cc-visa {
+  background-image: url('../assets/payment-icons/visa-svgrepo-com.svg');
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  color: transparent;
+  width: 70px;
+  height: 45px;
+}
+
+/* MoMo */
+.payment-icons .momo {
+  background-image: url('../assets/payment-icons/momo_square_pinkbg.svg');
+  background-color: transparent;
+  color: transparent;
+  width: 70px;
+  height: 45px;
+}
+
+/* VNPay */
+.payment-icons .vnpay {
+  background-image: url('../assets/payment-icons/VNPAY_id-sVSMjm2_1.svg');
+  background-color: transparent;
+  color: transparent;
+  width: 70px;
+  height: 45px;
+}
+
+/* ZaloPay */
+.payment-icons .zalopay {
+  background-image: url('../assets/payment-icons/Logo ZaloPay.svg');
+  background-color: transparent;
+  color: transparent;
+  width: 70px;
+  height: 45px;
+}
+
+/* Add responsive styles */
+@media (max-width: 768px) {
+  .payment-icons {
+    gap: 10px;
+  }
+  
+  .payment-icons i,
+  .payment-icons .payment-icon {
+    font-size: 20px;
+    padding: 8px 12px;
+    min-width: 50px;
+  }
+}

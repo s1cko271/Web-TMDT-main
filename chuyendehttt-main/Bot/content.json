@@ -1,0 +1,749 @@
+{
+        "intents": [
+                {
+                        "tag": "1",
+                        "patterns": [
+                                "Xin chào",
+                                "Chào bạn",
+                                "Có ai ở đó không?",
+                                "Chào nhé",
+                                "Hello",
+                                "Chào shop",
+                                "Ê shop ơi",
+                                "Có ai onl không",
+                                "Alo alo",
+                                "Chào, shop còn mở không",
+                                "Shop ơi có ai không"
+                        ],
+                        "responses": [
+                                "Xin chào! Chào mừng bạn đến với DQC!",
+                                "Chào bạn! Mình là trợ lý của DQC, có thể giúp gì cho bạn hôm nay?",
+                                "Chào nhé! DQC rất vui được hỗ trợ bạn!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "2",
+                        "patterns": [
+                                "Bạn là ai",
+                                "Tên bạn là gì",
+                                "Bạn có tên không",
+                                "Bạn là cái gì",
+                                "Shop này ai quản lý",
+                                "Ai đang chat với tui vậy",
+                                "Bạn có phải người thật không",
+                                "Bot hả trời",
+                                "Bạn ở đâu vậy"
+                        ],
+                        "responses": [
+                                "Mình là trợ lý mua sắm của DQC!",
+                                "Chào bạn, mình là trợ lý ảo của DQC, rất vui được gặp bạn!",
+                                "Bạn có thể gọi mình là trợ lý DQC!",
+                                "Mình ở đây để giúp bạn khám phá thời trang tại DQC!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "3",
+                        "patterns": [
+                                "Bạn bán gì",
+                                "Sản phẩm của bạn là gì",
+                                "Cho mình biết về cửa hàng",
+                                "Có gì trong kho không",
+                                "DQC có gì đặc biệt",
+                                "Shop có bán áo thun không",
+                                "Có váy maxi không",
+                                "Loại quần áo nào hot nhất",
+                                "DQC có đồ công sở không",
+                                "Có gì cho mùa đông không",
+                                "Shop của bạn bán đồ gì vậy",
+                                "Có đồ đi biển không",
+                                "Có áo crop top không"
+                        ],
+                        "responses": [
+                                "DQC bán quần áo nữ thời trang—váy, áo, chân váy và nhiều hơn nữa!",
+                                "Chúng tôi có nhiều sản phẩm thời trang nữ đẹp tại DQC. Bạn đang tìm gì?",
+                                "DQC chuyên về thời trang nữ hiện đại, phong cách và chất lượng. Xem bộ sưu tập mới nhất nhé!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "4",
+                        "patterns": [
+                                "Giá bao nhiêu",
+                                "Cái này bao nhiêu tiền",
+                                "Bạn có thể cho mình biết giá không",
+                                "Đắt không",
+                                "Giá sản phẩm thế nào",
+                                "Váy maxi bao nhiêu",
+                                "Áo len giá bao nhiêu",
+                                "Cái áo trắng đó giá sao",
+                                "Đồ DQC mắc không",
+                                "Cho giá rẻ nhất đi",
+                                "Giá cái này rẻ thôi đúng không",
+                                "Có cái nào dưới 200k không",
+                                "Váy này bao tiền vậy"
+                        ],
+                        "responses": [
+                                "Bạn có thể cho mình biết bạn đang hỏi về sản phẩm nào của DQC không?",
+                                "Giá tùy thuộc vào sản phẩm—bạn muốn kiểm tra món nào tại DQC?",
+                                "Mình rất sẵn lòng giúp! Bạn muốn biết giá của sản phẩm nào tại DQC?"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "5",
+                        "patterns": [
+                                "Có giảm giá không",
+                                "Hôm nay có khuyến mãi gì không",
+                                "Có chương trình ưu đãi không",
+                                "Có deal nào không",
+                                "Sale gì hot không",
+                                "Có sale cuối năm không",
+                                "Giảm giá bao nhiêu phần trăm",
+                                "Có deal nào rẻ không",
+                                "Hôm nay sale gì vậy",
+                                "Có chương trình mua 1 tặng 1 không",
+                                "Sale?",
+                                "Khuyến mãi?",
+                                "Giảm giá?",
+                                "Deal?",
+                                "Ưu đãi?"
+                        ],
+                        "responses": [
+                                "Có chứ! DQC đang có khuyến mãi, xem mục giảm giá trên web nhé!",
+                                "Hôm nay DQC có giảm giá cho một số sản phẩm đấy!",
+                                "Hiện tại DQC có chương trình sale đặc biệt—giảm tới 30%!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "6",
+                        "patterns": [
+                                "Làm sao để đặt hàng",
+                                "Mua hàng thế nào",
+                                "Quy trình mua hàng ra sao",
+                                "Đặt hàng kiểu gì",
+                                "Mua ở DQC sao nổi",
+                                "Cách đặt hàng trên web",
+                                "Mua online kiểu gì",
+                                "Hướng dẫn mua đồ đi",
+                                "Đặt hàng có khó không",
+                                "Mua qua app được không",
+                                "Mua sao?"
+                        ],
+                        "responses": [
+                                "Để đặt hàng tại DQC, bạn chỉ cần thêm sản phẩm vào giỏ và thanh toán!",
+                                "Rất đơn giản—chọn sản phẩm trên DQC, vào giỏ hàng, rồi làm theo hướng dẫn!",
+                                "Chọn món bạn thích tại DQC, thêm vào giỏ, và mua online thôi!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "7",
+                        "patterns": [
+                                "Bạn khỏe không",
+                                "Có gì mới không",
+                                "Bạn thế nào",
+                                "DQC có gì hot không",
+                                "Shop có gì vui không",
+                                "Hôm nay có gì lạ không",
+                                "DQC có cập nhật gì mới",
+                                "Shop có gì đang trend không",
+                                "Mới không?"
+                        ],
+                        "responses": [
+                                "Mình khỏe, cảm ơn bạn! Hôm nay DQC có thể giúp bạn mua sắm gì?",
+                                "Mình ổn, cảm ơn! DQC vừa cập nhật nhiều mẫu mới, bạn muốn xem không?",
+                                "Mình ở đây để hỗ trợ bạn nhé! DQC đang có nhiều sản phẩm hot lắm!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "8",
+                        "patterns": [
+                                "Tạm biệt",
+                                "Hẹn gặp lại",
+                                "Bye",
+                                "Gặp sau nhé",
+                                "Thôi mình đi đây",
+                                "Cảm ơn nha, bye",
+                                "Tạm biệt shop",
+                                "Ok, đi đây"
+                        ],
+                        "responses": [
+                                "Tạm biệt! Chúc bạn mua sắm vui vẻ tại DQC!",
+                                "Hẹn gặp lại—cảm ơn bạn đã ghé qua DQC!",
+                                "Bye! Quay lại DQC sớm để khám phá thêm nhé!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "9",
+                        "patterns": [
+                                "Cảm ơn",
+                                "Cảm ơn bạn",
+                                "Cảm ơn nhé",
+                                "Thanks",
+                                "Cảm ơn shop nhiều",
+                                "Ok, thanks nha",
+                                "Cảm ơn nhiều lắm",
+                                "Cảm ơn vì hỗ trợ"
+                        ],
+                        "responses": [
+                                "Không có gì! DQC rất vui được giúp bạn!",
+                                "Rất vui được hỗ trợ bạn tại DQC!",
+                                "Cảm ơn bạn đã ghé qua DQC—chúc bạn vui!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "10",
+                        "patterns": [
+                                "Có giao hàng quốc tế không",
+                                "Giao đến nước tôi được không",
+                                "Chính sách giao hàng thế nào",
+                                "Ship ngoại quốc sao nổi",
+                                "Giao qua Mỹ được không",
+                                "Ship tới Nhật bao lâu",
+                                "Có ship sang Úc không",
+                                "Giao quốc tế mất bao lâu"
+                        ],
+                        "responses": [
+                                "Có, DQC giao hàng quốc tế! Xem chi tiết trên trang giao hàng nhé.",
+                                "DQC giao đến nhiều nước—bạn ở đâu vậy?",
+                                "Chính sách giao hàng của DQC có trên web, mình có thể giải đáp thêm nếu bạn cần!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "11",
+                        "patterns": [
+                                "Có size nào",
+                                "Có size của tôi không",
+                                "Size [X] còn không",
+                                "DQC có size lớn không",
+                                "Có size XXL không",
+                                "Size nhỏ nhất là gì",
+                                "Có size cho người mũm mĩm không",
+                                "Size S còn hàng không",
+                                "Có size cho người cao không",
+                                "Size?",
+                                "Kích cỡ?",
+                                "Size lớn?",
+                                "Size nhỏ?"
+                        ],
+                        "responses": [
+                                "DQC có size từ XS đến XXL—bạn cần size nào?",
+                                "Bạn cho mình biết size của bạn, mình kiểm tra ngay tại DQC!",
+                                "Hầu hết sản phẩm DQC có nhiều size. Bạn muốn size gì?"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "12",
+                        "patterns": [
+                                "Có đổi trả được không",
+                                "Chính sách đổi trả thế nào",
+                                "Làm sao để trả hàng",
+                                "Đổi đồ ở DQC sao nổi",
+                                "Mua rồi đổi được không",
+                                "Trả hàng có mất phí không",
+                                "Đổi size được không",
+                                "Trả hàng trong bao lâu"
+                        ],
+                        "responses": [
+                                "Có, DQC cho đổi trả trong 30 ngày nếu chưa mặc. Xem chính sách nhé!",
+                                "Bạn có thể trả hàng tại DQC trong 30 ngày nếu chưa dùng. Cần hướng dẫn không?",
+                                "Chính sách đổi trả của DQC đơn giản—vào trang đổi trả hoặc hỏi mình!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "13",
+                        "patterns": [
+                                "Còn hàng không",
+                                "Có món này không",
+                                "[Món hàng] còn không",
+                                "DQC còn đồ không",
+                                "Váy maxi còn không",
+                                "Áo len đỏ còn hàng không",
+                                "Còn cái áo trắng đó không",
+                                "Hết hàng rồi hả",
+                                "Còn váy màu hồng không",
+                                "Còn không?",
+                                "Hàng đâu?",
+                                "Hết chưa?",
+                                "Còn váy?"
+                        ],
+                        "responses": [
+                                "Cho mình biết món nào, mình sẽ kiểm tra ngay tại DQC!",
+                                "Hầu hết còn hàng tại DQC—bạn đang tìm gì?",
+                                "Mình có thể kiểm tra kho DQC nếu bạn nói rõ món hàng!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "14",
+                        "patterns": [
+                                "Giao hàng bao lâu",
+                                "Khi nào hàng tới",
+                                "Thời gian giao hàng bao lâu",
+                                "Ship của DQC nhanh không",
+                                "Hàng tới nội thành bao lâu",
+                                "Ship tỉnh lẻ mất mấy ngày",
+                                "Giao hàng có lâu không",
+                                "Ship nhanh trong ngày được không",
+                                "Ship bao lâu?",
+                                "Giao lâu?",
+                                "Ship nhanh?",
+                                "Hàng khi nào?"
+                        ],
+                        "responses": [
+                                "Giao hàng của DQC thường mất 3-7 ngày làm việc, tùy nơi bạn ở.",
+                                "Thời gian giao của DQC tùy khu vực—bạn ở đâu vậy?",
+                                "Hầu hết đơn hàng DQC tới trong vòng 1 tuần. Cần ước tính chính xác hơn không?"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "15",
+                        "patterns": [
+                                "Gợi ý cho tôi",
+                                "Nên mua gì",
+                                "Đề xuất bộ đồ nào",
+                                "DQC có gì đẹp không",
+                                "Mặc gì đi tiệc",
+                                "Gợi ý đồ đi làm",
+                                "Có váy nào cho đám cưới không",
+                                "Mua gì cho mùa hè",
+                                "Đồ nào hợp đi chơi",
+                                "Có gì mặc đi biển không",
+                                "Gợi ý đồ cho mùa đông đi",
+                                "Mặc gì cho buổi hẹn hò",
+                                "Có đồ nào trẻ trung không",
+                                "Đẹp không?"
+                        ],
+                        "responses": [
+                                "Mình rất sẵn lòng! Bạn thích phong cách nào—bình thường, công sở hay thời thượng tại DQC?",
+                                "Một chiếc váy xinh hoặc áo len ấm của DQC thì sao? Bạn thích gì?",
+                                "Mình gợi ý bộ sưu tập mới của DQC—phù hợp mọi dịp!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "16",
+                        "patterns": [
+                                "Có mẫu mới không",
+                                "Sản phẩm mới nhất là gì",
+                                "DQC vừa ra gì",
+                                "Có gì hot không",
+                                "Mẫu mới nhất của DQC",
+                                "Có bộ sưu tập mới không",
+                                "Đồ mới có gì hot",
+                                "Có váy mới không",
+                                "Hàng mới?"
+                        ],
+                        "responses": [
+                                "Có chứ! DQC vừa ra mắt bộ sưu tập mới, bạn muốn xem không?",
+                                "Sản phẩm mới nhất của DQC đang rất hot—xem trên web nhé!",
+                                "DQC luôn cập nhật mẫu mới, hiện có nhiều món đẹp lắm!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "17",
+                        "patterns": [
+                                "Chất liệu thế nào",
+                                "Đồ làm từ gì",
+                                "Vải của DQC ra sao",
+                                "Chất vải có tốt không",
+                                "Váy này làm bằng gì",
+                                "Áo len có xù lông không",
+                                "Vải có co giãn không",
+                                "Chất liệu có mát không",
+                                "Vải có dễ nhăn không"
+                        ],
+                        "responses": [
+                                "Chất liệu của DQC đa dạng—cotton, lụa, voan... Bạn muốn hỏi về món nào?",
+                                "Đồ DQC dùng vải chất lượng cao, thoải mái và bền. Bạn quan tâm sản phẩm nào?",
+                                "Mình có thể kiểm tra chất liệu cụ thể nếu bạn cho mình biết món hàng!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "18",
+                        "patterns": [
+                                "Có cửa hàng không",
+                                "DQC có shop thật không",
+                                "Mua trực tiếp ở đâu",
+                                "Shop DQC ở đâu",
+                                "Có showroom không",
+                                "Mua offline được không",
+                                "Cửa hàng DQC ở Hà Nội đâu",
+                                "Shop đâu?"
+                        ],
+                        "responses": [
+                                "Hiện DQC chủ yếu bán online, nhưng bạn có thể xem sản phẩm trên web!",
+                                "DQC tập trung vào trải nghiệm mua sắm trực tuyến—rất tiện lợi!",
+                                "Nếu bạn muốn mua trực tiếp, hãy liên hệ DQC để biết thêm chi tiết nhé!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "19",
+                        "patterns": [
+                                "Thanh toán thế nào",
+                                "DQC nhận thanh toán gì",
+                                "Trả tiền kiểu gì",
+                                "Có COD không",
+                                "Thanh toán qua Momo được không",
+                                "Chuyển khoản sao nổi",
+                                "Có trả góp không",
+                                "Thanh toán bằng thẻ được không"
+                        ],
+                        "responses": [
+                                "DQC nhận thanh toán qua thẻ, chuyển khoản hoặc COD—bạn thích cách nào?",
+                                "Bạn có thể trả tiền online hoặc khi nhận hàng tại DQC!",
+                                "Thanh toán tại DQC rất dễ—xem hướng dẫn khi checkout nhé!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "20",
+                        "patterns": [
+                                "Liên hệ DQC thế nào",
+                                "Hotline của DQC là gì",
+                                "Chat với ai bây giờ",
+                                "Gọi số nào để hỏi",
+                                "Email của shop là gì",
+                                "Có chat zalo không",
+                                "Liên hệ kiểu gì nhanh nhất"
+                        ],
+                        "responses": [
+                                "Bạn có thể liên hệ DQC qua hotline [số điện thoại] hoặc chat ngay với mình!",
+                                "DQC luôn sẵn sàng hỗ trợ—gọi [số điện thoại] hoặc nhắn trên web nhé!",
+                                "Mình là trợ lý của DQC, bạn cần giúp gì cứ nói!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "21",
+                        "patterns": [
+                                "Đồ DQC có bền không",
+                                "Chất lượng thế nào",
+                                "DQC có đáng tiền không",
+                                "Đồ có dễ rách không",
+                                "Mặc vài lần có hỏng không",
+                                "Chất lượng so với giá sao",
+                                "Đồ có bị phai màu không",
+                                "Giá rẻ?"
+                        ],
+                        "responses": [
+                                "Đồ DQC được thiết kế chất lượng, bền đẹp theo thời gian!",
+                                "Chất lượng là ưu tiên hàng đầu của DQC—bạn sẽ hài lòng!",
+                                "DQC cam kết mang đến sản phẩm đáng giá, bạn cứ yên tâm!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "22",
+                        "patterns": [
+                                "Mã giảm giá đâu",
+                                "Có code giảm giá không",
+                                "DQC có voucher không",
+                                "Cho code sale đi",
+                                "Có mã nào dùng được không",
+                                "Voucher mới nhất là gì",
+                                "Có code cho khách mới không"
+                        ],
+                        "responses": [
+                                "DQC đang có một số mã giảm giá—xem trên trang khuyến mãi nhé!",
+                                "Bạn kiểm tra mục ưu đãi trên web DQC, có thể tìm thấy code đấy!",
+                                "Hiện tại DQC có voucher cho đơn hàng đầu tiên—dùng thử nhé!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "23",
+                        "patterns": [
+                                "Hủy đơn hàng thế nào",
+                                "Làm sao để hủy đơn",
+                                "Tôi muốn hủy đơn DQC",
+                                "Hủy đơn có mất phí không",
+                                "Hủy đơn được không",
+                                "Lỡ đặt rồi muốn hủy",
+                                "Hủy đơn nhanh đi"
+                        ],
+                        "responses": [
+                                "Để hủy đơn, bạn liên hệ DQC qua hotline hoặc email trước khi hàng được giao!",
+                                "Hủy đơn tại DQC rất dễ—nhắn mình thông tin đơn hàng để hỗ trợ nhé!",
+                                "Bạn cho mình mã đơn hàng, mình sẽ giúp bạn kiểm tra và hủy nếu được!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "24",
+                        "patterns": [
+                                "Bạn có bán giày không",
+                                "Có đồ nam không",
+                                "DQC có đồ trẻ em không",
+                                "Tôi muốn mua điện thoại",
+                                "Có bán túi xách không",
+                                "DQC có đồ thể thao không",
+                                "Có phụ kiện gì không",
+                                "Bạn bán mỹ phẩm à",
+                                "Có đồ nội thất không",
+                                "Shop có bán đồng hồ không",
+                                "Có đồ cho thú cưng không",
+                                "Có áo mưa không",
+                                "Có đồ chơi không",
+                                "Có đồ ăn không",
+                                "Có nón bảo hiểm không",
+                                "Bán đồ bơi không",
+                                "Có đồ dùng học tập không",
+                                "Có áo siêu nhân không",
+                                "Có đồ chống nắng không",
+                                "Bán đồ trang trí nhà không",
+                                "Có bán đồ điện tử không",
+                                "Áo mưa?",
+                                "Giày?",
+                                "Túi xách?",
+                                "Mỹ phẩm?",
+                                "Đồng hồ?",
+                                "Đồ ăn đâu?",
+                                "Nón bảo hiểm?",
+                                "Đồ nam?",
+                                "Đồ trẻ em?"
+                        ],
+                        "responses": [
+                                "DQC chưa có món đó, nhưng có nhiều váy áo nữ xinh! Xem nhé?",
+                                "Chưa có nha, DQC chuyên thời trang nữ. Bạn thích style gì?",
+                                "Không có đâu, nhưng quần áo nữ DQC đẹp lắm! Thử xem nào?",
+                                "Món đó chưa có, bạn muốn xem váy áo nữ hot của DQC không?"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "25",
+                        "patterns": [
+                                "Cái gì thế này",
+                                "Tôi không hiểu",
+                                "Bạn nói gì vậy",
+                                "Hỏi cái khác được không",
+                                "Cái này là sao",
+                                "Mua đồ ở đâu cũng được à",
+                                "Shop này làm gì vậy",
+                                "Cái gì cũng được hả",
+                                "Bạn có biết thời tiết hôm nay không",
+                                "Hôm nay thứ mấy vậy",
+                                "Bạn có biết đường đi không",
+                                "Gì vậy?"
+                        ],
+                        "responses": [
+                                "Hihi, có vẻ mình chưa hiểu rõ ý bạn. Bạn muốn hỏi về sản phẩm nào của DQC không?",
+                                "Mình hơi lạc hướng rồi! Bạn đang tìm gì tại DQC, mình giúp nhé?",
+                                "Câu hỏi thú vị đó! Bạn có muốn mình gợi ý vài món thời trang đẹp của DQC không?"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "26",
+                        "patterns": [
+                                "Hàng giao chậm quá",
+                                "Sản phẩm không giống hình",
+                                "Tôi không hài lòng",
+                                "DQC giao sai đồ",
+                                "Chất lượng kém quá",
+                                "Sao đồ rách vậy",
+                                "Giao hàng lâu thế",
+                                "Shop làm ăn kiểu gì vậy",
+                                "Đồ này mặc 1 lần là hỏng",
+                                "Sao không giống quảng cáo",
+                                "Đồ dởm quá",
+                                "Shop lừa đảo hả",
+                                "Hàng lỗi kìa",
+                                "Sai kích cỡ rồi",
+                                "Vải xấu thế",
+                                "Áo phai màu rồi",
+                                "Giao thiếu hàng",
+                                "Đường may tệ quá",
+                                "Sao lâu ship thế",
+                                "Hàng giả đúng không",
+                                "Đồ này là đồ cũ à",
+                                "Mua mà bực mình",
+                                "Shop làm ăn chán thật",
+                                "Đổi trả sao nổi",
+                                "Hỏng rồi!",
+                                "Sai đồ!",
+                                "Lỗi này!",
+                                "Dởm!",
+                                "Lừa à?",
+                                "Chán shop!",
+                                "Giao chậm!",
+                                "Vải tệ!",
+                                "Hàng đâu đúng!",
+                                "Tức quá!",
+                                "Sao thế này?",
+                                "Đồ gì kém vậy?",
+                                "Hàng lỗi!",
+                                "Sai size!",
+                                "Phai màu!"
+                        ],
+                        "responses": [
+                                "Mình rất tiếc vì sự cố! Bạn cho mình mã đơn hàng để DQC hỗ trợ ngay nhé!",
+                                "DQC xin lỗi vì trải nghiệm này. Bạn nhắn mã đơn hàng, mình sẽ xử lý nhanh chóng!",
+                                "Cảm ơn bạn đã báo. Mình rất tiếc về vấn đề này! Bạn gửi mã đơn để DQC hỗ trợ nha?",
+                                "Mình xin lỗi vì sự bất tiện! Bạn cung cấp mã đơn hàng, DQC sẽ giải quyết ngay!",
+                                "Ôi, DQC rất tiếc! Bạn nhắn chi tiết vấn đề và mã đơn, mình sẽ hỗ trợ liền nhé!"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "27",
+                        "patterns": [
+                                "Bán váy bằng vàng không",
+                                "Có áo giá 1 nghìn không",
+                                "Shop có bán phi thuyền không",
+                                "Bạn có phải robot không",
+                                "Mua cả shop được không",
+                                "Có đồ miễn phí không",
+                                "Bán cái gì mà rẻ nhất thế giới đi",
+                                "Có bán áo tàng hình không",
+                                "Shop có bán vương miện không",
+                                "Có đồ bay được không",
+                                "Bán đồ đi vũ trụ không",
+                                "Có áo đổi màu theo tâm trạng không",
+                                "Shop có bán đồ siêu anh hùng không",
+                                "Có bán cái gì bất tử không",
+                                "Bán đồ ngủ mà không cần ngủ không",
+                                "Có áo biết nói không",
+                                "Có bán đồ chống zombie không",
+                                "Bán đồ để sống trên sao Hỏa không",
+                                "Có áo tự giặt được không",
+                                "Váy vàng?",
+                                "Áo tàng hình?",
+                                "Phi thuyền đâu?",
+                                "Đồ miễn phí?",
+                                "Áo siêu anh hùng?"
+                        ],
+                        "responses": [
+                                "Haha, chưa có nha! Nhưng váy áo DQC siêu xinh, xem không?",
+                                "Ôi, cái đó chưa có! Thử xem quần áo nữ hot của DQC nhé?",
+                                "Hihi, không có đâu! DQC có nhiều outfit đẹp, bạn thích gì?",
+                                "Món đó chưa có, nhưng thời trang nữ DQC chất lắm! Xem nha?"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "28",
+                        "patterns": [
+                                "Hôm nay trời mưa không",
+                                "Có biết đội bóng nào thắng không",
+                                "Bạn xem phim gì hay không",
+                                "Hôm nay có tin tức gì hot",
+                                "Bạn có biết nấu ăn không",
+                                "Cô gái đẹp nhất shop là ai",
+                                "Bạn có biết hát không"
+                        ],
+                        "responses": [
+                                "Hihi, mình chuyên về thời trang hơn đó! Bạn muốn mình gợi ý outfit cho ngày mưa không?",
+                                "Mình chưa cập nhật tin tức này, nhưng có thể giúp bạn chọn đồ đẹp tại DQC! Bạn thích phong cách nào?",
+                                "Câu hỏi thú vị đó! DQC có nhiều mẫu váy hot, bạn muốn mình giới thiệu không?"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "29",
+                        "patterns": [
+                                "Có áo mưa không",
+                                "Bán đồ chống thấm nước không",
+                                "Có áo cho ngày nắng không",
+                                "Có đồ mặc khi trời lạnh không",
+                                "Shop có bán áo chống gió không",
+                                "Có đồ đi tuyết không",
+                                "Bán áo chống tia UV không",
+                                "Có đồ cho ngày bão không",
+                                "Có áo nào mặc mưa mà đẹp không",
+                                "Có đồ cho trời sương mù không",
+                                "Bán đồ để đi sa mạc không",
+                                "Có đồ mặc khi trời nóng không",
+                                "Có áo cho ngày gió lớn không",
+                                "Bán đồ đi leo núi không",
+                                "Áo mưa?",
+                                "Đồ nắng?",
+                                "Áo lạnh?",
+                                "Đồ bão?",
+                                "Áo chống gió?",
+                                "Đồ nóng?",
+                                "Đồ lạnh?"
+                        ],
+                        "responses": [
+                                "Chưa có nha, DQC chuyên váy áo nữ đẹp! Xem thử không?",
+                                "Không có đâu, nhưng quần áo nữ DQC xinh lắm! Thử xem nhé?",
+                                "Món đó chưa có, bạn muốn xem thời trang nữ hot của DQC không?",
+                                "Hihi, chưa có, nhưng DQC có nhiều outfit đẹp! Bạn thích gì?"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "30",
+                        "patterns": [
+                                "Sale?",
+                                "Hàng đâu?",
+                                "Gì vậy?",
+                                "Mới không?",
+                                "Đẹp không?",
+                                "Có không?",
+                                "Shop đâu?",
+                                "Hàng mới?",
+                                "Giá rẻ?",
+                                "Còn không?",
+                                "Mua sao?",
+                                "Cái gì?",
+                                "Sao rồi?",
+                                "Hỏi gì?",
+                                "Đồ đâu?",
+                                "Mấy giờ?",
+                                "Ở đâu?",
+                                "Sao thế?",
+                                "Hết chưa?"
+                        ],
+                        "responses": [
+                                "Hihi, bạn hỏi gì thế? DQC có váy áo nữ xinh, xem nhé?",
+                                "Chào bạn! DQC chuyên thời trang nữ đẹp, bạn muốn mình gợi ý gì?",
+                                "Bạn ơi, nói rõ hơn nha! DQC có quần áo nữ hot, thử xem không?",
+                                "Không rõ ý bạn lắm! Xem váy áo đẹp của DQC nha?"
+                        ],
+                        "context_set": ""
+                },
+                {
+                        "tag": "31",
+                        "patterns": [
+                                "Cái gì đây",
+                                "Hả?",
+                                "Tôi muốn cái khác",
+                                "Shop bán gì lạ vậy",
+                                "Cái này làm sao",
+                                "Bạn biết gì không",
+                                "Cho tôi cái gì vui vui",
+                                "Hôm nay có gì đặc biệt",
+                                "Shop có bán đồ kỳ lạ không",
+                                "Tôi muốn hỏi cái khác",
+                                "Cái gì cũng được",
+                                "Bán gì đó mới đi",
+                                "Shop có gì hay ho",
+                                "Bạn biết chơi game không",
+                                "Có cái gì hot không",
+                                "Tôi hỏi lung tung được không"
+                        ],
+                        "responses": [
+                                "Hihi, câu hỏi của bạn thú vị quá! DQC chuyên váy áo nữ xinh, bạn muốn mình gợi ý gì không?",
+                                "Ôi, mình hơi lạc lối rồi! Bạn đang tìm gì nè? DQC có nhiều quần áo nữ đẹp, xem nhé?",
+                                "Chào bạn! Có vẻ mình chưa hiểu rõ ý bạn. Thử xem váy áo hot của DQC không nào?",
+                                "Haha, bạn hỏi gì độc lạ thế! DQC có nhiều outfit nữ xinh, bạn muốn khám phá gì?"
+                        ],
+                        "context_set": ""
+                }
+        ]
+}
