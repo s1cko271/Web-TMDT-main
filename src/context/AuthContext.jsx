@@ -91,8 +91,8 @@ export const AuthProvider = ({ children }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-        name,
-        email,
+          name,
+          email,
           password
         }),
       });
