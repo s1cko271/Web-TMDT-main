@@ -32,5 +32,3 @@ yarn-error.log*
 *.sln
 *.sw?
 connectAivenMysql.js
-.env
-.env

@@ -37,62 +37,39 @@ export const AuthProvider = ({ children }) => {
     }
   }, [user]);
 
-  // Updated login function to support social login
-  const login = async (email, password, socialToken = null) => {
+  // Login function
+  const login = async (email, password) => {
     setIsLoading(true);
     setError(null);
     
     try {
-      let data;
-      
-      if (socialToken) {
-        // Social login - use the provided token
-        data = {
-          token: socialToken,
-          email: email
-        };
-      } else {
-        // Regular login
-        const response = await fetch('/api/users/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email,
-            password
-          }),
-        });
+      // Gọi API đăng nhập từ backend
+      const response = await fetch('/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password
+        }),
+      });
 
-        data = await response.json();
-        
-        if (!response.ok) {
-          throw new Error(data.message || 'Đăng nhập không thành công');
-        }
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Đăng nhập không thành công');
       }
       
-      // Lưu token
+      // Lưu token nếu API trả về
       if (data.token) {
         localStorage.setItem('token', data.token);
       }
       
-      // Lấy thông tin user
-      const userResponse = await fetch('/api/users/me', {
-        headers: {
-          'x-auth-token': data.token
-        }
-      });
-
-      if (!userResponse.ok) {
-        throw new Error('Failed to get user data');
-      }
-
-      const userData = await userResponse.json();
-      
       // Lưu user vào state
-      setUser(userData);
+      setUser(data);
       
-      return userData;
+      return data;
     } catch (err) {
       setError(err.message);
       return null;

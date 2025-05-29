@@ -9,7 +9,6 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import ProfilePage from './pages/ProfilePage';
 import OrderHistoryPage from './pages/OrderHistoryPage';
-import OrderDetailPage from './pages/OrderDetailPage';
 import { AuthProvider } from './context/AuthContext';
 import Debug from './debug';
 import './App.css';
@@ -22,7 +21,6 @@ import Orders from './admin/pages/Orders';
 import Users from './admin/pages/Users';
 import Promotions from './admin/pages/Promotions';
 import AdminLogin from './admin/pages/AdminLogin';
-import AuthCallback from './pages/AuthCallback';
 
 function App() {
   return (
@@ -52,8 +50,6 @@ function App() {
           <Route path="/signup" element={<MainLayout><SignupPage /></MainLayout>} />
           <Route path="/profile" element={<MainLayout><ProfilePage /></MainLayout>} />
           <Route path="/orders" element={<MainLayout><OrderHistoryPage /></MainLayout>} />
-          <Route path="/orders/:orderId" element={<MainLayout><OrderDetailPage /></MainLayout>} />
-          <Route path="/auth/callback" element={<AuthCallback />} />
           </Routes>
       </div>
     </AuthProvider>

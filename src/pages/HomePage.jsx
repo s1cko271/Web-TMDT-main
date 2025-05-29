@@ -81,10 +81,9 @@ const HomePage = () => {
       <section className="hero">
         <div className="container hero-container">
           <div className="hero-content">
-            <h1 className="hero-title">Shop the Latest School Supplies</h1>
-            <p className="hero-description">
-              Khám phá bộ sưu tập văn phòng phẩm chất lượng, giá tốt cho học sinh, sinh viên và giáo viên.<br/>
-              Từ bút, vở, dụng cụ học tập đến đồ dùng văn phòng – mọi thứ bạn cần đều có tại School Store!
+            <h1 className="hero-title">{t('homePage.heroTitle', 'Shop the Latest Trends')}</h1>
+            <p className="hero-subtitle">
+              {t('homePage.heroSubtitle', 'Discover our curated collection of premium products at unbeatable prices. From electronics to fashion, we\'ve got everything you need.')}
             </p>
             <Link to="/products" className="btn btn-primary">{t('homePage.shopNow', 'Shop Now')}</Link>
           </div>

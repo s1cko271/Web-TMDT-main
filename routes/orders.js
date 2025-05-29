@@ -35,7 +35,6 @@ async function setupOrderTables() {
         product_id INT NOT NULL,
         quantity INT NOT NULL DEFAULT 1,
         unit_price DECIMAL(10, 2) NOT NULL,
-        price DECIMAL(10, 2) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
         FOREIGN KEY (product_id) REFERENCES school_supplies(id),
@@ -105,9 +104,9 @@ router.post('/', verifyToken, async (req, res) => {
     // Thêm các sản phẩm vào đơn hàng
     for (const item of orderItems) {
       await pool.query(
-        `INSERT INTO order_items (order_id, product_id, quantity, unit_price, price)
-         VALUES (?, ?, ?, ?, ?)`,
-        [orderId, item.product_id, item.quantity, item.unit_price, item.price]
+        `INSERT INTO order_items (order_id, product_id, quantity, unit_price)
+         VALUES (?, ?, ?, ?)`,
+        [orderId, item.product_id, item.quantity, item.unit_price]
       );
     }
 
@@ -141,12 +140,12 @@ router.post('/', verifyToken, async (req, res) => {
       id: orderId,
       user_id,
       total_amount: totalAmount,
-      status: newOrder[0].status,
+      status: order[0].status,
       shipping_address,
       shipping_phone,
       payment_method,
-      payment_status: newOrder[0].payment_status,
-      created_at: newOrder[0].created_at,
+      payment_status: order[0].payment_status,
+      created_at: order[0].created_at,
       items: orderItems
     });
   } catch (error) {
@@ -322,7 +321,7 @@ router.put('/:orderId/payment', verifyToken, async (req, res) => {
       }
     }
 
-    res.json(updatedOrderResult[0]);
+    res.json(updatedOrder[0]);
   } catch (error) {
     console.error('Error updating payment status:', error.message);
     res.status(500).json({ message: 'Server error' });

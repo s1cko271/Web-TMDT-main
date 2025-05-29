@@ -7,7 +7,6 @@ import { formatCurrency } from '../utils/currencyUtils';
 import QRCodePaymentNew from '../components/QRCodePaymentNew';
 import './CheckoutPage.css';
 import './PaymentIcons.css';
-import axios from 'axios';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -55,7 +54,7 @@ const CheckoutPage = () => {
   const [paymentStatus, setPaymentStatus] = useState('pending'); // pending, processing, completed, failed
   const [paymentOrderId, setPaymentOrderId] = useState(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     
     if (selectedItems.length === 0) {
@@ -68,58 +67,11 @@ const CheckoutPage = () => {
       alert(t('checkoutPage.pleaseCompletePayment', 'Vui lòng hoàn tất thanh toán bằng cách quét mã QR'));
       return;
     }
-
-    try {
-      setPaymentStatus('processing');
-      
-      // Lấy thông tin người dùng từ local storage
-      const user = JSON.parse(localStorage.getItem('user'));
-      if (!user) {
-        alert(t('checkoutPage.pleaseLogin', 'Vui lòng đăng nhập để tiếp tục'));
-        navigate('/login');
-        return;
-      }
-      
-      // Tạo dữ liệu đơn hàng để gửi lên API
-      const orderData = {
-        user_id: user.id,
-        items: selectedItems.map(item => ({
-          product_id: item.id,
-          quantity: item.quantity,
-        })),
-        shipping_address: `${formData.address}, ${formData.city}, ${formData.state}, ${formData.zipCode}, ${formData.country}`,
-        shipping_phone: user.phone || '0123456789', // Có thể thêm trường số điện thoại vào form
-        payment_method: paymentMethod,
-        payment_status: paymentStatus === 'completed' ? 'paid' : 'pending'
-      };
-      
-      // Gọi API để tạo đơn hàng mới
-      const token = localStorage.getItem('token');
-      const response = await axios.post('/api/orders', orderData, {
-        headers: {
-          'x-auth-token': token
-        }
-      });
-      
-      // Lưu thông tin đơn hàng vào localStorage để hiển thị ngay cả khi chưa đồng bộ với server
-      const orderDetails = response.data;
-      let userOrders = JSON.parse(localStorage.getItem(`orders_${user.id}`)) || [];
-      userOrders.unshift(orderDetails);
-      localStorage.setItem(`orders_${user.id}`, JSON.stringify(userOrders));
-      
-      // Xóa các sản phẩm đã đặt khỏi giỏ hàng
-      selectedItems.forEach(item => removeFromCart(item.id));
-      
-      // Hiển thị thông báo thành công
-      alert(t('checkoutPage.orderSuccess'));
-      
-      // Chuyển hướng đến trang chi tiết đơn hàng
-      navigate(`/orders/${orderDetails.id}`);
-    } catch (error) {
-      console.error('Error creating order:', error);
-      alert(t('checkoutPage.orderError', 'Có lỗi xảy ra khi tạo đơn hàng. Vui lòng thử lại.'));
-      setPaymentStatus('failed');
-    }
+    
+    // Xử lý đơn hàng và xóa các mặt hàng đã chọn khỏi giỏ hàng
+    selectedItems.forEach(item => removeFromCart(item.id));
+    alert(t('checkoutPage.orderSuccess'));
+    navigate('/');
   };
   
   // Xử lý khi thanh toán QR hoàn tất
