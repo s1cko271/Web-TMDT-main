@@ -132,47 +132,7 @@ const sendOrderConfirmationEmail = async (user, order, items) => {
   }
 };
 
-// Gửi email thông báo khuyến mãi
-const sendPromotionEmail = async (users, promotion) => {
-  try {
-    const transport = initializeTransporter();
-    
-    // Gửi email cho từng người dùng
-    const results = await Promise.all(users.map(async (user) => {
-      const mailOptions = {
-        from: `"School Store" <${process.env.SMTP_USER}>`,
-        to: user.email,
-        subject: `Khuyến mãi đặc biệt: ${promotion.title}`,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #4a4a4a;">Xin chào ${user.name},</h2>
-            <div style="background-color: #f8f8f8; padding: 15px; border-radius: 5px;">
-              <h3 style="color: #e63946;">${promotion.title}</h3>
-              <p>${promotion.description}</p>
-              <p><strong>Thời gian áp dụng:</strong> ${new Date(promotion.start_date).toLocaleDateString('vi-VN')} - ${new Date(promotion.end_date).toLocaleDateString('vi-VN')}</p>
-              ${promotion.code ? `<p><strong>Mã khuyến mãi:</strong> <span style="background-color: #e63946; color: white; padding: 3px 8px; border-radius: 3px;">${promotion.code}</span></p>` : ''}
-              <a href="${promotion.url || '#'}" style="display: inline-block; background-color: #e63946; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 15px;">Xem ngay</a>
-            </div>
-            <p style="margin-top: 20px;">Đừng bỏ lỡ cơ hội mua sắm với giá ưu đãi!</p>
-            <p>Trân trọng,</p>
-            <p>Đội ngũ School Store</p>
-          </div>
-        `
-      };
-      
-      return transport.sendMail(mailOptions);
-    }));
-    
-    console.log(`Đã gửi ${results.length} email khuyến mãi`);
-    return results;
-  } catch (error) {
-    console.error('Lỗi khi gửi email khuyến mãi:', error);
-    throw error;
-  }
-};
-
 module.exports = {
   sendRegistrationEmail,
-  sendOrderConfirmationEmail,
-  sendPromotionEmail
+  sendOrderConfirmationEmail
 };
