@@ -119,3 +119,76 @@
     padding: 30px 20px;
   }
 }
+
+.social-login {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.social-divider {
+  position: relative;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.social-divider::before,
+.social-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.social-divider::before {
+  left: 0;
+}
+
+.social-divider::after {
+  right: 0;
+}
+
+.social-divider span {
+  background-color: white;
+  padding: 0 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.social-button:hover {
+  background-color: #f5f5f5;
+}
+
+.social-button img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.google-button {
+  color: #757575;
+}
+
+.facebook-button {
+  color: #1877f2;
+  border-color: #1877f2;
+}
+
+.facebook-button:hover {
+  background-color: #f0f2f5;
+}

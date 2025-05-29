@@ -37,39 +37,62 @@ export const AuthProvider = ({ children }) => {
     }
   }, [user]);
 
-  // Login function
-  const login = async (email, password) => {
+  // Updated login function to support social login
+  const login = async (email, password, socialToken = null) => {
     setIsLoading(true);
     setError(null);
     
     try {
-      // Gọi API đăng nhập từ backend
-      const response = await fetch('/api/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password
-        }),
-      });
-
-      const data = await response.json();
+      let data;
       
-      if (!response.ok) {
-        throw new Error(data.message || 'Đăng nhập không thành công');
+      if (socialToken) {
+        // Social login - use the provided token
+        data = {
+          token: socialToken,
+          email: email
+        };
+      } else {
+        // Regular login
+        const response = await fetch('/api/users/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email,
+            password
+          }),
+        });
+
+        data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.message || 'Đăng nhập không thành công');
+        }
       }
       
-      // Lưu token nếu API trả về
+      // Lưu token
       if (data.token) {
         localStorage.setItem('token', data.token);
       }
       
-      // Lưu user vào state
-      setUser(data);
+      // Lấy thông tin user
+      const userResponse = await fetch('/api/users/me', {
+        headers: {
+          'x-auth-token': data.token
+        }
+      });
+
+      if (!userResponse.ok) {
+        throw new Error('Failed to get user data');
+      }
+
+      const userData = await userResponse.json();
       
-      return data;
+      // Lưu user vào state
+      setUser(userData);
+      
+      return userData;
     } catch (err) {
       setError(err.message);
       return null;

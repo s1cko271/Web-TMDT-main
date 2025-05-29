@@ -14,12 +14,18 @@ async function setupUsersTable() {
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL,
+        password VARCHAR(255),
         address TEXT,
         phone VARCHAR(20),
+        google_id VARCHAR(255),
+        facebook_id VARCHAR(255),
+        avatar_url TEXT,
+        provider VARCHAR(20),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        INDEX (email)
+        INDEX (email),
+        INDEX (google_id),
+        INDEX (facebook_id)
       )
     `);
 
@@ -289,6 +295,25 @@ router.put('/change-password/:id', verifyToken, async (req, res) => {
   } catch (error) {
     console.error('Lỗi khi thay đổi mật khẩu:', error);
     res.status(500).json({ message: 'Lỗi server' });
+  }
+});
+
+// GET current user info
+router.get('/me', verifyToken, async (req, res) => {
+  try {
+    const [users] = await pool.query(
+      'SELECT id, name, email, address, phone, avatar_url, provider FROM users WHERE id = ?',
+      [req.user.id]
+    );
+
+    if (users.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json(users[0]);
+  } catch (error) {
+    console.error('Error getting user info:', error.message);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

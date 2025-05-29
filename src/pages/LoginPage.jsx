@@ -20,6 +20,14 @@ const LoginPage = () => {
     }
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = '/api/auth/google';
+  };
+
+  const handleFacebookLogin = () => {
+    window.location.href = '/api/auth/facebook';
+  };
+
   return (
     <div className="auth-container">
       <div className="auth-form-container">
@@ -61,11 +69,34 @@ const LoginPage = () => {
             {isLoading ? t('loginPage.loggingIn', 'Logging in...') : t('navbar.login', 'Login')}
           </button>
         </form>
+
+        <div className="social-login">
+          <p className="social-divider">
+            <span>{t('loginPage.orLoginWith', 'Or login with')}</span>
+          </p>
+          
+          <button 
+            onClick={handleGoogleLogin}
+            className="social-button google-button"
+            type="button"
+          >
+            <img src="/google-icon.png" alt="Google" />
+            {t('loginPage.loginWithGoogle', 'Login with Google')}
+          </button>
+          
+          <button 
+            onClick={handleFacebookLogin}
+            className="social-button facebook-button"
+            type="button"
+          >
+            <img src="/facebook-icon.png" alt="Facebook" />
+            {t('loginPage.loginWithFacebook', 'Login with Facebook')}
+          </button>
+        </div>
         
         <p className="auth-redirect">
           {t('loginPage.noAccount', 'Don\'t have an account?')} <Link to="/signup">{t('navbar.signup', 'Sign up')}</Link>
         </p>
-        
       </div>
     </div>
   );

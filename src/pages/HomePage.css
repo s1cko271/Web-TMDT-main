@@ -163,6 +163,30 @@
   background-color: #222;
 }
 
+/* Thêm hoặc cập nhật style cho nút 'Mua ngay' trên hero section */
+.btn.btn-primary {
+  display: inline-block;
+  padding: 16px 36px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, #4a55a2 0%, #6c63ff 100%);
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 4px 16px rgba(76, 81, 162, 0.15);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  margin-top: 32px;
+  letter-spacing: 1px;
+}
+
+.btn.btn-primary:hover, .btn.btn-primary:focus {
+  background: linear-gradient(90deg, #6c63ff 0%, #4a55a2 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(76, 81, 162, 0.25);
+  outline: none;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .hero-title {
@@ -186,5 +210,11 @@
   
   .newsletter-form button {
     border-radius: 4px;
+  }
+  
+  .btn.btn-primary {
+    padding: 14px 24px;
+    font-size: 1rem;
+    margin-top: 24px;
   }
 }

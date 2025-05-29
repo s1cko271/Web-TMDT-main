@@ -17,6 +17,7 @@ const paymentRoutes = require('./routes/payments');
 const orderRoutes = require('./routes/orders');
 const adminRoutes = require('./routes/admin');
 const reviewRoutes = require('./routes/product_reviews');
+const authRoutes = require('./routes/auth');
 
 // Initialize express app
 const app = express();
@@ -35,6 +36,7 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/auth', authRoutes);
 
 // Default route
 app.get('/', (req, res) => {
